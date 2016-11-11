@@ -1,0 +1,4 @@
+*.doctree
+*.pickle
+build/*
+
