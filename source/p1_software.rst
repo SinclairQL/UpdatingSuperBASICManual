@@ -27,13 +27,13 @@ How and Where to Get the Software
 The Editor
 ----------
 
-Head on over to https://notepad-plus-plus.org/ and download the latest version. Install it andthat's all there is to it. This is probably one of the finest text editors I've used on any operating system and I cannot recommend it highly enough.
+Head on over to https://notepad-plus-plus.org/ and download the latest version. Install it and that's all there is to it. This is probably one of the finest text editors I've used on any operating system and I cannot recommend it highly enough.
 
 
 Git
 ---
 
-Git is needed to allow the SuperBASIC-Manaul repository to be updated. The download details, for Windows users, can be found at https://git-for-windows.github.io/. If you are on Linux then your software repository will have an up to date versions which you should install using the appropriate package manager.
+Git is needed to allow the SuperBASIC-Manual repository to be updated. The download details, for Windows users, can be found at https://git-for-windows.github.io/. If you are on Linux then your software repository will have an up to date versions which you should install using the appropriate package manager.
 
 Mac users simply need to head on over to https://git-scm.com/download/mac where you will get all the details you need.
 
@@ -138,4 +138,4 @@ If anyone is interested, this is what Embarcadero have to say about their free t
     
 All Done!
 ---------    
-That's (about) it! Nothing too excessive now, was it? Too much software perhaps? Well, nobody said that it was going to be easy. But remember, once all this is installed, you have a very good and useful document production system whihc can be used for many things, not just updating the SuperBASIC Manual.
+That's (about) it! Nothing *too* excessive now, was it? Too much software perhaps? Well, nobody said that it was going to be easy. But remember, once all this is installed, you have a very good and useful document production system which can be used for many things, not just updating the SuperBASIC Manual.

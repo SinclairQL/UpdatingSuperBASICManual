@@ -77,6 +77,6 @@ use.
 .. rubric:: Footnotes
 
 .. [#] *Old farts* is a genuine term of endearment, and not what you might be thinking!
-.. [#] To be fair, this is a common occurence in many communities. Everyone wants stuff done, but only a few dedicated people do anything to do the work. Others, sadly, don't, can't or won't!
+.. [#] To be fair, this is a common occurrence in many communities. Everyone wants stuff done, but only a few dedicated people do anything to do the work. Others, sadly, don't, can't or won't!
 .. [#] Yes, most of it was all on one, long, line!
 .. [#] I think it means shopping for shoes and clothes, for her that is!

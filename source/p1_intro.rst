@@ -7,7 +7,7 @@ If you are reading this then you are either an insomniac like me, or you have a 
 
 Now, you might think that it will be difficult to do so, given all that fancy HTML and the like, but nothing could be further from the truth. The manual is written in a special form of plain text and converted to the glorious format that you see online, and indeed, can download for your own offline enjoyment.
 
-The special format is known as ReStructuredText (yes, all one word!) and is pretty simple to use and understand, for the most part. And, as I've delibereately avoided using the more complex or esoteric features of ReStructuredText in the original files, you don't have to worry about them!
+The special format is known as ReStructuredText (yes, all one word!) and is pretty simple to use and understand, for the most part. And, as I've deliberately avoided using the more complex or esoteric features of ReStructuredText in the original files, you don't have to worry about them!
 
 How Can I Help?
 ===============
@@ -15,7 +15,7 @@ How Can I Help?
 There are a few different ways that you can help:
 
 Just Email!
-    The easiset "fix" is to get someone else to do it for you! Just send an email, let's say via the QL Users list where whetever is "wrong" can be discussed prior to fixing, if anything needs fixing. Obviously, you should provide as much detail as possible about:
+    The easiset "fix" is to get someone else to do it for you! Just send an email, let's say via the QL Users list where whatever is "wrong" can be discussed prior to fixing, if anything needs fixing. Obviously, you should provide as much detail as possible about:
     
     - What you think is wrong;
     - Where you think it is wrong;
@@ -23,7 +23,7 @@ Just Email!
     - Why you think this.
 
 Log Bugs
-    Bugs can be logged agsinst the source repository on GitHub using the issues tracker. As the owner of the repository, I will be informed and will be able to do something to fix them. For the sake of argument, a bug in this context is anything "wrong" with the Manual as it is. You could include:
+    Bugs can be logged against the source repository on GitHub using the issues tracker. As the owner of the repository, I will be informed and will be able to do something to fix them. For the sake of argument, a bug in this context is anything "wrong" with the Manual as it is. You could include:
     
     - Spelling errors;
     - Bad grammar;
@@ -54,7 +54,7 @@ On the screen that appears:
 - Fill in a descriptive title.
 - Fill in a good description of the problem as you see it. If possible, suggest fixes, changes etc. Give examples, if possible. Markdown formatting is allowed in the description - if you know how to use it, that is.
 - Over on the right, there's a "gear wheel" icon next to "Labels". Click it and select a category. Bug, Enhancement or Question are good ones. Click as many as you feel necessary and click the gear wheel again.
-- Go to the "Preview" tabe and check it all looks right. Go back to the "Write" tab and make fixes if necessary.
+- Go to the "Preview" tab and check it all looks right. Go back to the "Write" tab and make fixes if necessary.
 - Click "Submit new issue".
 
 
@@ -71,7 +71,7 @@ If you have the desire to fix things, the process is quite simple too but it doe
 
 The steps above are covered in their own section later on in this "book".
 
-In order to actually do your own fixes, or adding new details to the manual, you will need some software, and sadly, our beloved QL and the various emulator children it has begat, are of no use I'm afriad. We need Linux, Windows and perhaps a Mac.
+In order to actually do your own fixes, or adding new details to the manual, you will need some software, and sadly, our beloved QL and the various emulator children it has begat, are of no use I'm afraid. We need Linux, Windows and perhaps a Mac.
 
     
     
