@@ -57,11 +57,12 @@ On the screen that appears:
 - Go to the "Preview" tabe and check it all looks right. Go back to the "Write" tab and make fixes if necessary.
 - Click "Submit new issue".
 
+
 Fix Bugs Yourself
 =================
 If you have the desire to fix things, the process is quite simple too but it does require the use of a Windows, Mac or Linux computer - unless you are attempting to edit files actually in the browser - and the installation of the Git software.
 
-- Fork `The SuperBASIC GitHub Repository <https://github.com/NormanDunbar/SuperBASIC-Manual>`__. You will need a GitHub accoount for this, but it's free, there's no spam and you can have as many or as few repositories as you like.
+- Fork `The SuperBASIC GitHub Repository <https://github.com/NormanDunbar/SuperBASIC-Manual>`__. You will need a GitHub account for this, but it's free, there's no spam and you can have as many or as few repositories as you like.
 - Once forked, you can clone it to your computer, or edit things online, but to be honest, do it locally as it's better that way.
 - Commit your changes.
 - Push your changes back to your repository on GitHub.
@@ -70,7 +71,7 @@ If you have the desire to fix things, the process is quite simple too but it doe
 
 The steps above are covered in their own section later on in this "book".
 
-
+In order to actually do your own fixes, or adding new details to the manual, you will need some software, and sadly, our beloved QL and the various emulator children it has begat, are of no use I'm afriad. We need Linux, Windows and perhaps a Mac.
 
     
     

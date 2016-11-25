@@ -13,4 +13,5 @@ Interested? Read on ...
    :maxdepth: 2
 
    p1_intro 
+   p1_software
 
