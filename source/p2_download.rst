@@ -1,10 +1,19 @@
 Obtaining the Source
 ====================
 
-Before you can start making changes to the manual, you must:
+Free Git Book
+-------------
+
+You might like to download and read the *Pro Git* book, by Scott Chacon & Ben Straub. This is a book published by Apress but which is given away for free on the web at https://git-scm.com/book/en/v2 - various formats are available.
+
+
+Introduction
+------------
+
+Before you can start making changes to the SuperBASIC manual, you must:
 
 - ``Fork`` the repository on GitHub;
-- ``Pull`` the fork down to your computer;
+- ``Clone`` the fork down to your computer;
 - Configure git;
 - Make your changes or additions;
 - Commit the changes to your local repository;
@@ -31,26 +40,290 @@ Forking the main repository is simple.
       :align: center
       :alt: Image showing how to fork a repository in GitHub.
 
-- If you are a member of an organisation as well as being an individual, you will be prompted to select a location. Choose whichever one applies.
+- If you are a member of one or more organisations, as well as being an individual, you will be prompted to select a location. Choose whichever one applies.
 - That's it. After a while, the repository will show up in your list of repositories.
-        
 
-Pull the Source
----------------
+You are now ready to ``pull`` the source code from your repository to your local computer, ready to edit.        
+
+Clone the Source
+----------------
+
+In your favourite browser, or alternatively, you could use Internet Explorer, go to https://github.com/<your-name>/SuperBASIC-Manual (letter case *is* significant here by the way). This is your repository page.
+
+On the right side, in a natty green colour, there's a button with the text "clone or download" written on it. 
+
+..  image:: images\CloneButton.png
+  :align: center
+  :alt: Image showing the clone or downlaod button in GitHub.
+
+Click it. A small dialogue will open up. The URL for your repository is preset in the text box, and the button on the right will copy the URL to the clipboard. Click it.
+
+..  image:: images\GetURL.png
+  :align: center
+  :alt: Image showing how to copy a repository URL in GitHub.
+
+Change form the browser to your command line session. Make sure that you are in a location where you are happy to create a new folder to download the source files to. I use a top level ``SourceCode`` folder, so on my computer, this would be where I need to be::
+
+    cd SourceCode
+    
+Now, type the following command::
+
+    git clone <paste>
+    
+Where "<paste>" means that you should paste in the URL you copied from GitHub. The final command should look something like this::
+
+    git clone https://github.com/NormanDunbar/SuperBASIC-Manual.git
+
+Obviously, your name would be different from mine!    
+
+After a few seconds or minutes - depending on your internet speed - you should find a new folder created, with the name ``SuperBASIC-Manual``.   
 
 
 Configure Git
 -------------
 
+In your command line session, change into your new folder::
+
+    cd SuperBASIC-Manual
+    
+The following configuration options are pretty much mandatory. They set the defaults for your username and email address for all your git work, now and in the future.
+
+::
+
+    git config --global user.name "Your Name"
+    git config --global user.email YourName@YourDomain.co.uk
+
+The ``--global`` flag means exactly that, they apply to all of git, not just this repository. You should also configure your default editor, for example, on Windows, to use Notepad++::
+
+    git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -nosession"
+    
+Alternatively, if you are on a 64 bit Windows system::
+
+    git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst
+
+On Linux, this works::
+
+    git config --global core-editor xed
+
+Line feeds are a nice little "gotcha" to watch out for. Windows editors *can* silently convert Linux/Mac/QL line feeds (LF) into Carriage Return plus Line Feed characters (CRLF). This is, to put it mildly, rather irritating!
+
+If you are on Windows, set the following configuration option so that your editor doesn't mess things up for everyone else when you check in a file::
+
+    git config --global core.autocrlf true
+
+When you check out a file, git will convert the LF to CRLF automatically for you. If you are using notepad++ as your editor then the above is not really required as that editor can happily cope with LF as well as CRLF. Just be sure that you don't have it set up to save everything in CRLF mode. (Settings->Preferences->New Document)
+
+Mac and Linux users should configure the following option instead::
+
+    git config --global core.autocrlf input
+    
+This will ensure that if a Windows file with CRLF is checked out by you, it will be fixed when you check it back in. 
+
+Hopefully now, everyone is happy.
+
 
 Edit the Source
 ---------------
 
+Very importantly, you should *never* work in the master branch. I've set up the repository with a *working* branch, and this is where the work should be done. When completely finished, the working branch can be merged back into the master branch.
+
+..  Important::
+
+    **We never, *ever* mess up the master branch!**
+
+So, in a command line session, we do the following::
+
+    cd SourceCode\SuperBASIC-Manual
+    git branch
+
+Git will respond with:: 
+   
+    *master
+
+So we need to be well away from that particular branch::
+    
+    git checkout working
+    git branch
+
+And git should respond with::
+    
+      master
+    * working
+
+The working branch is where we need to be, always, so check often!
+    
+Editing the source is *mostly* done in plain text. The benefit of ReStructuredText is that it is *mostly* just typing and no special formatting is required. However, please see the section on ReStructuredText in Part 3, for details of the features we use for the manual.
+
+The basic design of a keyword's entry in the manual is as follows, please try to stick with Rich's original format as much as possible, as the following template entry attempts to demonstrate::
+
+    CREATE_Keyword
+    ===============
+    
+    +----------+---------------------------------------------------------------------+
+    | Syntax   | CREATE_keyword title$, #channel [ Some_text$] [ more_text$]         |
+    +----------+---------------------------------------------------------------------+
+    | Location | QL ROM, Toolkit II, etc                                             |
+    +----------+---------------------------------------------------------------------+
+
+    At this point here, there will be a number of paragraphs describing the command, what it does, 
+    how it does it - if necessary - and so on. Very, very brief examples of it's use may be
+    found here.
+    
+    There may be minimal examples of the calling conventions, where these need special
+    attention, delimiters or whatever, not covered in the ``Syntax`` table entries above.
+    
+    **Example**
+    Please use the letter case demonstrated here for the section title - **Example**.
+    
+    The example section has a bold title, and gives a more complete example of the keyword's
+    usage in context. 
+    
+    ::
+    
+        1000 REMark Demonstration of the CREATE_keyword command.
+        1005 :
+        1010 OPEN #3, "con_"
+        1015 CREATE_keyword "OPEN", #3
+        1020 CREATE_keyword "TITLE", #3, KeyWord$
+        1025 CREATE_keyword "SYNTAX", #3, Syntax_1$, Syntax_2$
+        1030 CREATE_keyword "LOCATION", #3, "QL ROM"
+        1035 CREATE_keyword "DESCRIPTION", #3, Description$
+        1040 CREATE_keyword "NOTE 1", #3, Note$(1)
+        1045 CREATE_keyword "NOTE 2", #3, Note$(2)
+        1050 CREATE_keyword "NOTE 3", #3, Note$(3)
+        1055 CREATE_keyword "CROSS-REFERENCE", #3, Link$
+        1060 CREATE_keyword "CLOSE", #3
+        1065 CLOSE #3
+        
+    **Note 1**
+    For notes, which are optional, please ensure that each note's section uses the letter case
+    demonstrated here - **Note n** or **Notes** as appropriate.
+    
+    **Note 2**
+    There may be notes sections if the keyword demands special attention. Notes will be numbered
+    from 1 upwards for general purpose "applies to all" notes. Things to be aware of, how to
+    crash the QL by misuse of the command etc.
+        
+    **Note 3**
+    Where the normal QL differs from Minerva, or SMS etc, use a separate note for each.
+    
+    **CROSS-REFERENCE**
+    Again, please use Rich's letter case for this section, which again has a bold heading. This
+    section should describe, very briefly, other similar commands located elsewhere in this or
+    other files.
+    
+    Please make sure that if this is a simple list of keyword links, see below, that they do not
+    split across lines.
+    
+    This is a link `link text here <KeywordsX.clean.html#lower-case-keyword>`__
+  
 
 Commit Your Changes Locally
 ---------------------------
 
+Git is a *distributed* version control system. You has a local copy of your GitHub repository and you commit locally, and nothing ever leaves your computer, you don;t even have to have an internet connection up and running. Eventually, though, you have to ``push`` your changes back to your fork of my repository.
 
+You should commit frequently and often is the rule I've heard, but I'm a firm believer in only committing - as far as possible - when something is finished. You should however, be aware that the bigger the changes you make to a file, or files, means that there is a higher chance of a conflict when you come to commit, if someone else has amended the same region of the same file(s) as you have. This is a version control problem in general and is not specific to git.
+
+Conflict resolution is discussed `below <#dealing-with-conflicts>`__.
+
+What Has Changed
+~~~~~~~~~~~~~~~~
+
+Before you ``commit`` your changes, it is good practice to be sure of what you have changed. The ``git status`` command will show you all the files that have changed since the most recent ``commit``::
+
+    git status
+
+Git responds with the following::
+
+    On branch working
+    Your branch is up-to-date with 'origin/working'.
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+
+            modified:   source/Part2.rst
+            modified:   source/p2_download.rst
+
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+
+            source/images/CloneButton.png
+            source/images/GetURL.png
+
+    no changes added to commit (use "git add" and/or "git commit -a")    
+
+What does it all mean? Well, starting at the top, we have this::
+
+    On branch working
+    Your branch is up-to-date with 'origin/working'.
+
+Which informs you of the branch you are working on, and if you are ahead of the GitHub repository as far as new commits are concerned, here I'm up to date. 
+
+Next up, we see the list of files that have been modified since the last commit::
+
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+
+            modified:   source/Part2.rst
+            modified:   source/p2_download.rst
+
+In this case, I've edited the two files listed above. Git gives a helpful hint as to what commands I should type in and execute in order to ``stage`` the files for a ``commit`` - ``git add``, or, how to revert the changes I made - get rid of them altogether and take me back to the most recent clean version of the file(s) - ``git checkout``.
+
+Following on from the modified files, git shows a list of new files within this local repository::
+
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+
+            source/images/CloneButton.png
+            source/images/GetURL.png
+
+Untracked files are files that git is not tracking changes to, and which have not been added to the ``.gitignore`` file. These are, basically, brand new files. Some or all of these files may be added to the repository at a later date, but for now, git is aware that they exist, but doesn't really care!
+            
+And finally, a warning that if I ``commit`` now, nothing will happen::
+
+    no changes added to commit (use "git add" and/or "git commit -a")    
+
+    
+Staging Changes
+~~~~~~~~~~~~~~~
+You can add files to be committed individually, or using wildcards::
+
+    git add source/images/CloneButton.png
+    git add source/images/getURL.png
+    
+Or::
+
+    git add source/images/*.png
+    
+If the ``git status`` command's output is acceptable, and you simply want to add all changed and unstaged files, then you can indeed stage *everything* as follows::
+
+    git add --all
+    
+Git will not produce any messages unless something went wrong. If we check ``git status`` again, we see something different to the above::
+
+    On branch master
+    Your branch is up-to-date with 'origin/master'.
+    Changes to be committed:
+      (use "git reset HEAD <file>..." to unstage)
+
+            modified:   source/Part2.rst
+            new file:   source/images/CloneButton.png
+            new file:   source/images/GetURL.png
+            modified:   source/p2_download.rst
+
+Git is telling us here that all the listed files are about to be committed. 
+    
+..  Note::
+
+    If you amend a file that is staged, and appears in the list of files about to be committed, it will then show up as a changed file, waiting to be staged, and as a file waiting to be committed. If you commit, the unchanged file will be committed. If you want the latest amendments, you have to ``git add`` the file again.
+    
+Commit
+~~~~~~    
+    
+    
+    
 Push Changes Back to GitHub
 ---------------------------
 
@@ -61,6 +334,11 @@ Create a Pull Request
 
 Delete Your Fork
 ----------------
+
+
+Dealing With Conflicts
+----------------------
+
 
 
 Keeping Your Fork in Sync
