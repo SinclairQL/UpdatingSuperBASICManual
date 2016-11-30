@@ -317,19 +317,53 @@ Git is telling us here that all the listed files are about to be committed.
     
 ..  Note::
 
-    If you amend a file that is staged, and appears in the list of files about to be committed, it will then show up as a changed file, waiting to be staged, and as a file waiting to be committed. If you commit, the unchanged file will be committed. If you want the latest amendments, you have to ``git add`` the file again.
+    If you amend a file that is already staged and thus appears in the list of files about to be committed, it will then also show up as a changed file, waiting to be staged. If you commit, the already staged (and unchanged) file will be committed leaving the amended file to be staged etc at a later date. 
+    
+    If you want the latest amendments included in your commit, you have to ``git add`` the file again. This will overwrite the previously staged file.
+    
     
 Commit
 ~~~~~~    
+
+Committing your staged files means that they are added to your local repository, permanently. This doesn't mean you can't go back to a previous version of course, that is still possible.
+
+When you commit, you must supply a message with brief (or otherwise) details of what you have done in this commit. If you don't supply one, your default editor will open and you should type your message there instead. It's easier just to supply brief details on the command line, with the ``-m`` option, as the following example shows::
+
+    git commit -m "Details on getting the source files and editing them added."
+
+Git will respond with something similar to the following::
     
+    [working cc61ecf] Details on getting the source files and editing them added.
+     4 files changed, 421 insertions(+), 143 deletions(-)
+     create mode 100644 source/images/CloneButton.png
+     create mode 100644 source/images/GetURL.png    
     
     
 Push Changes Back to GitHub
 ---------------------------
 
+When you ``commit`` your changes, they are only stored locally, on your computer, you now need to ``push`` those changes, and perhaps others, back to your GitHub repository. You can do this at any time when connected to the internet.
 
+The following example shows the use of the ``git push`` command::
+
+    git push
+
+There's not much to it! Git will do some background processing and then something like the following output will appear on screen::
+
+    Counting objects: 8, done.
+    Delta compression using up to 8 threads.
+    Compressing objects: 100% (8/8), done.
+    Writing objects: 100% (8/8), 24.88 KiB | 0 bytes/s, done.
+    Total 8 (delta 3), reused 0 (delta 0)
+    remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+    To https://github.com/SinclairQL/UpdatingSuperBASICManual.git
+       dca541e..cc61ecf  working -> working
+
+That's it. All your locally committed changes have now been pushed back online to your GitHub repository. However, although they are in your repository, they are not in mine, and it's mine that the online documentation at `ReadTheDocs.io <http://superbasic-manual.readthedocs.io/en/latest/>`__ is generated from, so, how do you go about getting your changes merged into my repository, and update the online manual? Read on.      
+       
 Create a Pull Request
 ---------------------
+
 
 
 Delete Your Fork
