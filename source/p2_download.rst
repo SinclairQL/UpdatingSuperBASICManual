@@ -45,16 +45,16 @@ Forking the main repository is simple.
 
 You are now ready to ``pull`` the source code from your repository to your local computer, ready to edit.        
 
-Clone the Source
-----------------
+Pull the Source
+---------------
 
-In your favourite browser, or alternatively, you could use Internet Explorer, go to https://github.com/<your-name>/SuperBASIC-Manual (letter case *is* significant here by the way). This is your repository page.
+In your favourite browser, alternatively you could use Internet Explorer, go to https://github.com/<your-name>/SuperBASIC-Manual (letter case *is* significant here by the way). This is your repository page.
 
 On the right side, in a natty green colour, there's a button with the text "clone or download" written on it. 
 
 ..  image:: images\CloneButton.png
   :align: center
-  :alt: Image showing the clone or downlaod button in GitHub.
+  :alt: Image showing the clone or download button in GitHub.
 
 Click it. A small dialogue will open up. The URL for your repository is preset in the text box, and the button on the right will copy the URL to the clipboard. Click it.
 
@@ -72,9 +72,9 @@ Now, type the following command::
     
 Where "<paste>" means that you should paste in the URL you copied from GitHub. The final command should look something like this::
 
-    git clone https://github.com/NormanDunbar/SuperBASIC-Manual.git
+    git clone https://github.com/<your-name>/SuperBASIC-Manual.git
 
-Obviously, your name would be different from mine!    
+Obviously, <your-name> would be as appropriate!    
 
 After a few seconds or minutes - depending on your internet speed - you should find a new folder created, with the name ``SuperBASIC-Manual``.   
 
@@ -129,7 +129,7 @@ Very importantly, you should *never* work in the master branch. I've set up the 
 
 ..  Important::
 
-    **We never, *ever* mess up the master branch!**
+    **We never, ever mess up the master branch!**
 
 So, in a command line session, we do the following::
 
@@ -138,7 +138,7 @@ So, in a command line session, we do the following::
 
 Git will respond with:: 
    
-    *master
+    * master
 
 So we need to be well away from that particular branch::
     
@@ -165,9 +165,9 @@ The basic design of a keyword's entry in the manual is as follows, please try to
     | Location | QL ROM, Toolkit II, etc                                             |
     +----------+---------------------------------------------------------------------+
 
-    At this point here, there will be a number of paragraphs describing the command, what it does, 
-    how it does it - if necessary - and so on. Very, very brief examples of it's use may be
-    found here.
+    At this point here, there will be a number of paragraphs describing the command, 
+    what it does, how it does it - if necessary - and so on. Very, very brief examples 
+    of it's use may be found here.
     
     There may be minimal examples of the calling conventions, where these need special
     attention, delimiters or whatever, not covered in the ``Syntax`` table entries above.
@@ -180,7 +180,7 @@ The basic design of a keyword's entry in the manual is as follows, please try to
     
     ::
     
-        1000 REMark Demonstration of the CREATE_keyword command.
+        1000 REMark Demonstration of the (fictitious) CREATE_keyword command.
         1005 :
         1010 OPEN #3, "con_"
         1015 CREATE_keyword "OPEN", #3
@@ -221,11 +221,12 @@ The basic design of a keyword's entry in the manual is as follows, please try to
 Commit Your Changes Locally
 ---------------------------
 
-Git is a *distributed* version control system. You has a local copy of your GitHub repository and you commit locally, and nothing ever leaves your computer, you don;t even have to have an internet connection up and running. Eventually, though, you have to ``push`` your changes back to your fork of my repository.
+Git is a *distributed* version control system. You has a local copy of your GitHub repository and you commit locally, and nothing ever leaves your computer, you don't even have to have an internet connection up and running. Eventually, though, you have to ``push`` your changes back to your fork of my repository.
 
 You should commit frequently and often is the rule I've heard, but I'm a firm believer in only committing - as far as possible - when something is finished. You should however, be aware that the bigger the changes you make to a file, or files, means that there is a higher chance of a conflict when you come to commit, if someone else has amended the same region of the same file(s) as you have. This is a version control problem in general and is not specific to git.
 
-Conflict resolution is discussed `below <#dealing-with-conflicts>`__.
+Conflicts are not something you will come across when dealing with your own forked repositories - unless you conflict with yourself by changing the same part(s) of the same file(s) in two or more separate branches.
+
 
 What Has Changed
 ~~~~~~~~~~~~~~~~
@@ -234,6 +235,10 @@ Before you ``commit`` your changes, it is good practice to be sure of what you h
 
     git status
 
+..  note::
+    
+    In the following, you might notice that file names etc are somewhat different from the real SuperBASIC-Manual repository file names. Don't worry about this, it's because there are no current edits happening in that repository that can be used as an example.
+    
 Git responds with the following::
 
     On branch working
@@ -258,9 +263,9 @@ What does it all mean? Well, starting at the top, we have this::
     On branch working
     Your branch is up-to-date with 'origin/working'.
 
-Which informs you of the branch you are working on, and if you are ahead of the GitHub repository as far as new commits are concerned, here I'm up to date. 
+Which informs you of the branch you are working on, and if you are ahead of the GitHub repository as far as new commits are concerned, here I'm up to date and on the *working* branch. 
 
-Next up, we see the list of files that have been modified since the last commit::
+Next up, we see the list of files that have been modified since they were last committed::
 
     Changes not staged for commit:
       (use "git add <file>..." to update what will be committed)
@@ -269,9 +274,9 @@ Next up, we see the list of files that have been modified since the last commit:
             modified:   source/Part2.rst
             modified:   source/p2_download.rst
 
-In this case, I've edited the two files listed above. Git gives a helpful hint as to what commands I should type in and execute in order to ``stage`` the files for a ``commit`` - ``git add``, or, how to revert the changes I made - get rid of them altogether and take me back to the most recent clean version of the file(s) - ``git checkout``.
+In this case, I've edited the two files listed above. Git gives a helpful hint as to what commands I should type in and execute in order to ``stage`` the files for a ``commit`` - ``git add``, or, how to revert the changes I made - get rid of them altogether and take me back to the most recent clean version of the file(s) - ``git checkout ...``.
 
-Following on from the modified files, git shows a list of new files within this local repository::
+Following on from the modified & tracked files, git shows a list of new (untracked) files within this local repository::
 
     Untracked files:
       (use "git add <file>..." to include in what will be committed)
@@ -297,14 +302,14 @@ Or::
 
     git add source/images/*.png
     
-If the ``git status`` command's output is acceptable, and you simply want to add all changed and unstaged files, then you can indeed stage *everything* as follows::
+If the ``git status`` command's output is acceptable, and you simply want to add all modified files, and all unstaged files, then you can indeed stage *everything* as follows::
 
     git add --all
     
 Git will not produce any messages unless something went wrong. If we check ``git status`` again, we see something different to the above::
 
-    On branch master
-    Your branch is up-to-date with 'origin/master'.
+    On branch working
+    Your branch is up-to-date with 'origin/working'.
     Changes to be committed:
       (use "git reset HEAD <file>..." to unstage)
 
@@ -360,19 +365,24 @@ There's not much to it! Git will do some background processing and then somethin
        dca541e..cc61ecf  working -> working
 
 That's it. All your locally committed changes have now been pushed back online to your GitHub repository. However, although they are in your repository, they are not in mine, and it's mine that the online documentation at `ReadTheDocs.io <http://superbasic-manual.readthedocs.io/en/latest/>`__ is generated from, so, how do you go about getting your changes merged into my repository, and update the online manual? Read on.      
-       
+
+
 Create a Pull Request
 ---------------------
 
+At this point I could write lots and lots of text about how you would go about creating a pull request. It's not difficult, and in fact, when you push a change to a forked repository and then visit (or refresh) the repository page in your browser, you will notice that GitHub has seen your commit, understood that you have a forked repository, and will put a big green button with "create a pull request" on it.
+
+Click the button, add a descriptive heading, add a descriptive - ahem - description of what you did etc, and OK. Job done, I'll hear from GitHub that you have raised a ``pull`` request and I'll be able to inspect it, communicate with you, and - eventually - merge your changes into the main repository, which will cause a rebuild of the documentation over on http://superbasic-manual.readthedocs.io.
+
+If you really need *more* details, then get yourself a copy of the (free) book "Pro Git" by Scott Chacon, from https://git-scm.com/book/en/v2, and check out chapter 6 which is all about GitHub. There is a whole section on creating and maintaining ``pull`` requests. It starts around page 203.
 
 
 Delete Your Fork
 ----------------
 
+Your work is complete. Well, it is when you hear back from me that your work has been ``pull``ed into the main repository, so at this point you have the option of deleting your forked repository as it is no longer needed. 
 
-Dealing With Conflicts
-----------------------
-
+You don't have to delete it though, if you think that you might do some more work in the future, however, this means that from time to time, and *definitely* before you do any more work, you need to sync your fork of the main repository with any work being done and pulled into the main repository itself. This is explained below, in some detail.
 
 
 Keeping Your Fork in Sync
@@ -400,11 +410,13 @@ The output should resemble the following::
     upstream https://github.com/NormanDunbar/SuperBASIC-Manual.git (fetch)
     upstream https://github.com/NormanDunbar/SuperBASIC-Manual.git (push)
     
-    
+From now on, the name *upstream* will refer to my repository, the one you originally forked back at the start of this section. *Upstream/master* and *upstream/working* refer to the appropriate branches on my repository.
+
+
 Sync Your Fork
 ~~~~~~~~~~~~~~
 
-Your fork may be behind the upstream repository, as the main one is now known in your development system, so before making any changes, bring it up to date. You need to be sure that all your changes are pushed to your repository first though.
+Your fork may be behind the upstream repository, as the main repository is now referred to in your development system, so before making any changes, bring your fork up to date. You need to be sure that all your local changes are ``push``ed to your fork first though.
 
 The following commands will commit and push your latest work back to your fork. This will not be necessary if you have not done any work since the last push.
 
@@ -415,30 +427,30 @@ The following commands will commit and push your latest work back to your fork. 
     git commit -m "Pushing my latest work before syncing from upstream."
     git push
 
-Now that your fork is up to date will your local work, you should fetch the upstream/master branch. Doing this will also cause your development area to do a ``git checkout upstream/master`` command, so you will need to checkout your master branch afterwards::
+Now that your fork is up to date will your local work, you should fetch the upstream/master branch. Doing this will also cause your development area to effectively do a ``git checkout upstream/master`` command, so you will need to ``checkout`` your own *master* branch afterwards::
 
     git fetch upstream
     git checkout master
     git merge upstream/master
     git push
 
-That's the master branch taken care of. We don't however, do our work in that branch, we use working, so we also need to be sure that we have synced our working branch with upstream too::
+That's the *master* branch taken care of. We don't however, do our work in that branch, we use the *working* branch, so we also need to be sure that we have synced our *working* branch with upstream too::
     
     git fetch upstream/working
     git checkout working
     git merge upstream/working
     git push
 
-Now we are up to date *locally* and our fork is at the same commit point as the upstream repository. We can go to work. You will:
+Now we are up to date *locally* and our fork is at the same commit point as the upstream repository. We can now go to work. You will (probably):
 
-- Make changes and test in the working branch;
-- ``Commit`` those changes and ``push`` them to your fork;
-- ``Check out`` your master branch
-- ``Merge`` the changes from your working branch;
-- ``Push`` those to your fork;
+- Make changes and test in the local *working* branch;
+- ``Commit`` those changes and ``push`` them to your fork's *working* branch;
+- ``Check out`` your *master* branch
+- ``Merge`` the changes from your *working* branch;
+- ``Push`` those to your fork's *master* branch;
 - Raise a ``pull`` request in the normal manner.
 
-All of these steps are described in detail, above.
+All of these steps are described in some detail, above.
     
     
     
