@@ -6,5 +6,5 @@ Part Three - ReStructuredText
 .. toctree::
    :maxdepth: 2
 
-    
+   p3_rst 
 

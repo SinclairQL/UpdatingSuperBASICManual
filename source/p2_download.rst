@@ -1,6 +1,10 @@
 Obtaining the Source
 ====================
 
+..  The following section is used as a target for a :ref: link in file p3_rst.rst. In order for this to work, we have to create a link just above the section header. It sadly will not work without one. :-(
+
+.. _P2_FreeGitBook:
+
 Free Git Book
 -------------
 
@@ -380,7 +384,7 @@ If you really need *more* details, then get yourself a copy of the (free) book "
 Delete Your Fork
 ----------------
 
-Your work is complete. Well, it is when you hear back from me that your work has been ``pull``ed into the main repository, so at this point you have the option of deleting your forked repository as it is no longer needed. 
+Your work is complete. Well, it is when you hear back from me that your work has been ``pull``\ ed into the main repository, so at this point you have the option of deleting your forked repository as it is no longer needed. 
 
 You don't have to delete it though, if you think that you might do some more work in the future, however, this means that from time to time, and *definitely* before you do any more work, you need to sync your fork of the main repository with any work being done and pulled into the main repository itself. This is explained below, in some detail.
 
@@ -416,7 +420,7 @@ From now on, the name *upstream* will refer to my repository, the one you origin
 Sync Your Fork
 ~~~~~~~~~~~~~~
 
-Your fork may be behind the upstream repository, as the main repository is now referred to in your development system, so before making any changes, bring your fork up to date. You need to be sure that all your local changes are ``push``ed to your fork first though.
+Your fork may be behind the upstream repository, as the main repository is now referred to in your development system, so before making any changes, bring your fork up to date. You need to be sure that all your local changes are ``push``\ ed to your fork first though.
 
 The following commands will commit and push your latest work back to your fork. This will not be necessary if you have not done any work since the last push.
 
