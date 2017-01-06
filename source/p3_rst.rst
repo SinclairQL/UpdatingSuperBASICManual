@@ -516,7 +516,7 @@ Links are wrapped in backticks (\`) and double underscores (\_\_) as per the fol
         
     This is a link to the section above on `Escaping stuff <#escaping-special-characters>`__.
 
-    However, if the section in in another document, *and* only HTML is to ever be generated, then the follwoing will work, but hard codes the output file::
+    However, if the section in in another document, *and* only HTML is to ever be generated, then the following will work, but hard codes the output file::
 
         This is a link to the `Python <software.html#python>`__ section in the Software chapter.
         
