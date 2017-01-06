@@ -516,13 +516,15 @@ Links are wrapped in backticks (\`) and double underscores (\_\_) as per the fol
         
     This is a link to the section above on `Escaping stuff <#escaping-special-characters>`__.
 
-    However, if the section in in another document, then this is required::
+    However, if the section in in another document, *and* only HTML is to ever be generated, then the follwoing will work, but hard codes the output file::
 
         This is a link to the `Python <software.html#python>`__ section in the Software chapter.
         
     This is a link to the `Python <software.html#python>`__ section in the Software chapter.
 
-    Sadly, this latter link will only work now for HTML formatted output. If you generate PDF, for example, then there will be warnings that the link is not valid. The need for external links is discussed below, and this *does* work, regardless of the desired output format - HTML, PDF etc.
+    Sadly, this latter link will only work for HTML formatted output. If you generate other formats - PDF for example - then there will be warnings that the link is not valid and indeed, the link will not work. 
+    
+    For best results, regardless of the output format desired, see the next item.
 
 - Links to Other RST documents
     If you need to link to a section heading in *another* RST document, then you must use the ':ref:' directive as shown in the following::
