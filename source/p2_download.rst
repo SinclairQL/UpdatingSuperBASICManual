@@ -160,6 +160,8 @@ Editing the source is *mostly* done in plain text. The benefit of ReStructuredTe
 
 The basic design of a keyword's entry in the manual is as follows, please try to stick with Rich's original format as much as possible, as the following template entry attempts to demonstrate::
 
+    ..  _create-keyword:
+    
     CREATE_Keyword
     ===============
     
@@ -219,8 +221,42 @@ The basic design of a keyword's entry in the manual is as follows, please try to
     Please make sure that if this is a simple list of keyword links, see below, that they do not
     split across lines.
     
-    This is a link `link text here <KeywordsX.clean.html#lower-case-keyword>`__
+    This is a link :ref:`lower-case-keyword`
   
+.. note::
+
+   You should notice the first line in the above template. It is a link target. All keywords should have a link target set up just before the section header for that keyword. 
+
+   Link targets are simply the keyword converted to lower case, with underscores replaces by a single hyphen, and spaces replaced with two hyphens. Percent and dollar characters are replaced by '-pct' and '-dlr' respectively. 
+   
+   The following examples should help make things clear:
+   
+   - **DIM** - ``..  _dim:`` - no special needs here!
+   - **WHEN ERRor** - ``..  _when--error:`` - space replaced by '--', a double hyphen.
+   - **PRINT_USING** - ``..  _print-using:`` - underscore replaced by '-', a single hyphen.
+   - **DEV_NAME$** - ``..  _dev-name-dlr:`` - Underscore replaced. Dollar replaced by '-dlr'.
+   - **CHAN_B%** - ``..  _chan-b-pct:`` - underscore replaces. Percent replaced by '-pct'.
+   
+.. warning::
+
+   If you add a new keyword, and it has *exactly* the same name as another keyword in a different toolkit, then *do not* add a duplicate link target for the new keyword, leave the existing one alone and simply add your new keyword after the existing one with the same name, without adding a link target.
+
+   Duplicate target names are not allowed and changing the existing one, perhaps to give a numeric suffix, will invalidate all links pointing at it. 
+
+   It is perhaps better to have all links point at the first one and the viewer can scroll down to see the others. The source should resemble the following::
+
+        .. _search:
+        
+        SEARCH
+        ======
+        
+        This keyword was here first and has the original link target defined above. Yada yada yada.
+        
+        SEARCH
+        ======
+        
+        Different toolkit, same keyword. There is no link target here. Yada yada yada.
+        
 
 Commit Your Changes Locally
 ---------------------------
