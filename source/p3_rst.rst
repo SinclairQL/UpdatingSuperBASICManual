@@ -27,8 +27,41 @@ You may find that it is useful to add a comment to the RST source code for the m
     
 Comments have no effect on the generated output in HTML etc. If the comment needs to be longer than a single line, add additional lines and/or paragraphs (see below) as necessary.  
 
-  
+Section Headings
+----------------
 
+A section heading is simply the heading text, underlined by some combination of punctuation characters. Sphinx is quite good at determining the hierarchy, but it pays to be consistent. I use the following::
+
+    =================
+    Title of Document
+    =================
+    
+    Heading 1
+    =========
+    
+    Heading 2
+    ---------
+    
+    Heading 3
+    ~~~~~~~~~
+    
+    Heading 4
+    """""""""
+    
+The document title is overlined as well as underlined.
+
+You can go down another couple of levels, but it gets a bit messy. HTML only allows 6 levels of heading, so that's probably about as much as anyone should need. Unless you work in a legal establishment, of course, they do like to complicate things!
+
+It is advisable to add *reference link destinations* above each section header, if you intend to set up links, from other source files, to any of the sections in "this" source file. For example, if another source file wishes to link to Heading 2 above, this file should give heading 2 a link destination, as follows::
+
+    .. _Heading-two:
+    
+    Heading 2
+    ---------
+
+See :ref:`LinksToOtherRSTDocuments` below for full details.
+    
+    
 Paragraphs
 ----------
 
@@ -72,7 +105,7 @@ You want both? Sorry, they cannot be nested. As this shows::
 
 **This is bold *this should be italic+bold, but isn't* - but this is still bold!**
 
-Subscript and superscript need a slightly different format::    
+Subscript and superscript need a slightly different format. You put the text to be raised or lowered in between backtick characters, not single quotes::    
 
     e=mc :sup:`2`
     
@@ -96,22 +129,21 @@ Sulphuric Acid has the formula: H\ :sub:`2`\ SO\ :sub:`4`.
 Escaping Special Characters
 ---------------------------
 
-The asterisk (\*), the invisible space, the underscore (\_), the backslash (\\) (and more?) are special and have to be escaped using a back slash character (\\)::
+The asterisk (\*), the backtick (\`), the invisible space, the underscore (\_), the backslash (\\) (and more?) are special and have to be escaped using a back slash character (\\)::
 
-    Asterisk = \*
-    Underscore = \_
-    Backslash = \\
-    Invisible\ space (did you see it?)
+    - Asterisk = \*
+    - Underscore = \_
+    - Backslash = \\
+    - Backtick = \`
+    - Invisible\ space (did you see it?)
     
 Which gives the following:
 
-    Asterisk = \*
-
-    Underscore = \_
-
-    Backslash = \\
-
-    Invisible\ space (did you see it?)
+- Asterisk = \*
+- Underscore = \_
+- Backslash = \\
+- Backtick = \`
+- Invisible\ space (did you see it?)
 
 The invisible space is used in places where the end of some special formatting needs to be shown to be separate from the following text. Sometimes, for example, when using sub\ :sub:`script` or super\ :sup:`script`, or occasionally when you have a full stop following the end of a URL, for example. The invisible space tells the parser to stop parsing and that the text following the "space" is to be considered as a separate parsing entity.
 
@@ -491,58 +523,118 @@ Which renders to the following::
         110   PRINT "Hello World!"
         120 END REPeat Silly
 
-The double colon can go at the end of the preceding line, followed by a blank, followed by the indented code, or, can be on a line of its own, followed by a blank then the indented code.  
+The double colon can go at the end of the preceding line, followed by a blank, followed by the indented code, or, can be on a line of its own, followed by a blank then the indented code. 
+
+Code Highlighting
+-----------------
+
+Give the above for single and multiple line code listings, you can add syntax highlighting, if desired. Sphinx uses a Python library called `pygments <http://pygments.org/>`__ to do the syntax highlighting. To use this in your docs, simply set up your code blocks as follows::
+
+    .. code-block:: python
+        
+        total = 0
+        
+        # Remember, range(a, b) is from a to (b-1) inclusive!
+        for x in range(1, 667):
+            total += x
+            
+        print("The sum of all the numbers from 1 to 666 is %d" % (total))
+
+Unfortunately, MC68000 assembly language and SuperBASIC do not have highlighters defined. yet!
+
+The above source code renders to the following:
+
+    .. code-block:: python
+        
+        total = 0
+        
+        # Remember, range(a, b) is from a to (b-1) inclusive!
+        for x in range(1, 667):
+            total += x
+            
+        print("The sum of all the numbers from 1 to 666 is %d" % (total))
 
 
 Links
 -----
 
-Links are wrapped in backticks (\`) and double underscores (\_\_) as per the following::
+Normal http:// type links do not need any special formatting - they are identified as links to a URL, and will be rendered as such. Links within the document, either in the current source file, or to other source files, do require a bit of formatting.
+
+The general format for links is::
 
     `link text here <URL Here>`__
     
+The various different link types are detailed below.
 
-- External links
-    For example::
+External links
+~~~~~~~~~~~~~~
 
-        This is a link to my `GitHub repository <https://github.com/NormanDunbar/SuperBASIC-Manual.git>`__. Try it.
-        
+For example::
+
     This is a link to my `GitHub repository <https://github.com/NormanDunbar/SuperBASIC-Manual.git>`__. Try it.
+    
+This is a link to my `GitHub repository <https://github.com/NormanDunbar/SuperBASIC-Manual.git>`__. Try it.
 
-- Chapter & Section Headings 
-    Each chapter and section heading becomes it's own link. Replace spaces, underscores etc with a hyphen in the link's URL to get to that section and lower case the remaining letters. For example::
+Chapter & Section Headings 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        This is a link to the section above on `Escaping stuff <#escaping-special-characters>`__.
-        
+Each chapter and section heading becomes it's own link but *only within the same source file*. You simply enclose the chapter or section header in backticks and a trailing underscore to create a link::
+
+    This one links to `Code Highlighting`_ above.
+    
+This one links to `Code Highlighting`_ above.
+
+Embedded underscores etc need to be escaped.
+
+Sadly, cross source file links cannot be created this way, as this example demonstrates. It tries to link to a section heading in part two::
+
+    `Forking the Repository`_ is a good place to start...
+    
+`Forking the Repository`_ is a good place to start...
+    
+All you get is an errors when building the document::
+
+    ERROR: Unknown target name: "forking the repository".
+
+If you wish to put your own text rather than the section header, you should replace spaces, underscores etc with a hyphen in the link's URL to get to that section and lower case the remaining letters. For example::
+
     This is a link to the section above on `Escaping stuff <#escaping-special-characters>`__.
+    
+This is a link to the section above on `Escaping stuff <#escaping-special-characters>`__.
 
-    However, if the section in in another document, *and* only HTML is to ever be generated, then the following will work, but hard codes the output file::
+However, if the section in in another document, *and* only HTML is to ever be generated, then the following will work, but hard codes the output file::
 
-        This is a link to the `Python <software.html#python>`__ section in the Software chapter.
-        
     This is a link to the `Python <software.html#python>`__ section in the Software chapter.
-
-    Sadly, this latter link will only work for HTML formatted output. If you generate other formats - PDF for example - then there will be warnings that the link is not valid and indeed, the link will not work. 
     
-    For best results, regardless of the output format desired, see the next item.
+This is a link to the `Python <software.html#python>`__ section in the Software chapter.
 
-- Links to Other RST documents
-    If you need to link to a section heading in *another* RST document, then you must use the ':ref:' directive as shown in the following::
-    
-        This is a link to :ref:`P2_FreeGitBook` which should be found in part 2 of this manual.
-    
-    Additionally, and in order to make the link work, you need to create the link named 'P2_FreeGitBook' at the appropriate place in the other document. For best results links to other documents should point at a section or sub-section heading, so put the link just above that location::
-    
-        .. _P2_FreeGitBook:
+Sadly, this latter link will only work for HTML formatted output. If you generate other formats - PDF for example - then there will be warnings that the link is not valid and indeed, the link will not work. 
 
-        Free Git Book
-        -------------
+For best results, regardless of the output format desired, see the next item.
 
-        You might like to download and read the *Pro Git* book, by Scott Chacon & Ben Straub. This is a book published by Apress but which is given away for free on the web at https://git-scm.com/book/en/v2 - various formats are available.
-        
-        ...
+.. _LinksToOtherRSTDocuments:
+    
+Links to Other RST documents
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you need to link to a section heading in this, or *another* RST document, then you must use the ':ref:' directive as shown in the following::
 
     This is a link to :ref:`P2_FreeGitBook` which should be found in part 2 of this manual.
+
+Additionally, and in order to make the link work, you need to create the link named 'P2_FreeGitBook' at the appropriate place in the other document. For best results links to other documents should point at a section or sub-section heading, so put the link just above that location::
+
+    .. _P2_FreeGitBook:
+
+    Free Git Book
+    -------------
+
+    You might like to download and read the *Pro Git* book, by Scott Chacon & Ben Straub. This is a book published by Apress but which is given away for free on the web at https://git-scm.com/book/en/v2 - various formats are available.
+    
+    ...
+
+This is a link to :ref:`P2_FreeGitBook` which should be found in part 2 of this manual.
+
+You will note that the text inserted as the link text, is the section header of the section immediately following the link definition (in the other document), in this case, 'Free Git Book'.
     
     
 Footnotes
