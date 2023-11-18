@@ -15,7 +15,7 @@ How Can I Help?
 There are a few different ways that you can help:
 
 Just Email!
-    The easiset "fix" is to get someone else to do it for you! Just send an email, let's say via the QL Users list where whatever is "wrong" can be discussed prior to fixing, if anything needs fixing. Obviously, you should provide as much detail as possible about:
+    The easiest "fix" is to get someone else to do it for you! Just send an email, let's say via the QL Users list where whatever is "wrong" can be discussed prior to fixing, if anything needs fixing. Obviously, you should provide as much detail as possible about:
     
     - What you think is wrong;
     - Where you think it is wrong;
@@ -47,7 +47,7 @@ The steps to log a bug are simple:
 
 On the screen that appears:
 
-..  image:: images\LogIssue.png
+..  image:: images/LogIssue.png
     :align: center
     :alt: Image showing how to log an issue in GitHub.
 

@@ -40,7 +40,7 @@ Forking the main repository is simple.
 - Go to the `repository on GitHub <https://github.com/NormanDunbar/SuperBASIC-Manual>`__\ .
 - Click on the ``Fork`` button at the top of the screen, on the right:
 
-  ..  image:: images\Fork.png
+  ..  image:: images/Fork.png
       :align: center
       :alt: Image showing how to fork a repository in GitHub.
 
@@ -56,13 +56,13 @@ In your favourite browser, alternatively you could use Internet Explorer, go to 
 
 On the right side, in a natty green colour, there's a button with the text "clone or download" written on it. 
 
-..  image:: images\CloneButton.png
+..  image:: images/CloneButton.png
   :align: center
   :alt: Image showing the clone or download button in GitHub.
 
 Click it. A small dialogue will open up. The URL for your repository is preset in the text box, and the button on the right will copy the URL to the clipboard. Click it.
 
-..  image:: images\GetURL.png
+..  image:: images/GetURL.png
   :align: center
   :alt: Image showing how to copy a repository URL in GitHub.
 
