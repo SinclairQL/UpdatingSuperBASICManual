@@ -17,7 +17,7 @@ build:
 # Build documentation with Sphinx.
 sphinx:
   builder: html
-  configuration: sphinx/source/conf.py
+  configuration: source/conf.py
   fail_on_warning: false
 formats:
    - pdf
