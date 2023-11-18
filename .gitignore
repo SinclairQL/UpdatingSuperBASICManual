@@ -1,4 +1,6 @@
 *.doctree
 *.pickle
 build/*
+*.IGNORE.ME
+
 
